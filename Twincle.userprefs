@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/MapManager.cs">
+    <Files>
+      <File FileName="Assets/Script/CharDataClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/ScrollContentSet.cs" Line="121" Column="21" />
+      <File FileName="Assets/Script/GamaManager.cs" Line="124" Column="21" />
+      <File FileName="Assets/Script/CharManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/MapManager.cs" Line="17" Column="21" />
+      <File FileName="Assets/Script/MapObjectClass.cs" Line="7" Column="18" />
+      <File FileName="Assets/Script/MainUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/CharListUI.cs" Line="37" Column="41" />
+      <File FileName="Assets/Script/VisualNovelText.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
