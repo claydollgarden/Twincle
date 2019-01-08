@@ -9,7 +9,6 @@ public class CharListUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -17,22 +16,18 @@ public class CharListUI : MonoBehaviour {
 		
 	}
 
-	public void setUI(bool Flg, string mapName)
+	public void setUI(string mapName)
 	{
-		if (Flg) 
-		{
-			gameObject.SetActive (true);
-			scrollContentSetting.Populate (mapName);
-			iTween.MoveFrom(gameObject,iTween.Hash("x", 100,"time",0.3));
-		}
-		else 
-		{
-			gameObject.SetActive (false);
-		}
+        GameManager.Instance.activeCharListFlg = true;
+        gameObject.SetActive (true);
+        scrollContentSetting.Populate (mapName);
+        iTween.MoveFrom(gameObject,iTween.Hash("x", 100,"time",0.3));
+
 	}
 
 	public void closeUI()
 	{
+        GameManager.Instance.activeCharListFlg = false;
 		gameObject.SetActive (false);
 		scrollContentSetting.deleteAllCharlist ();
 	}

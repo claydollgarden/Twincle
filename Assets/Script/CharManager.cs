@@ -81,7 +81,7 @@ public class CharManager : MonoBehaviour {
 		GamaManager.instance.UiManager.setTargetUI (false);
 	}
 
-	void setAttribueColor()
+    void setAttribueColor()
 	{
 		if (Attribue == 0)
 		{
