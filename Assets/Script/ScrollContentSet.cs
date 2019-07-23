@@ -39,7 +39,38 @@ public class ScrollContentSet : MonoBehaviour {
 
 	}
 
-	public void deleteAllCharlist()
+    public void BattlePlayerUIPopulate()
+    {
+        AllPlayerDataSetting();
+
+        GameObject newObj; // Create GameObject instance
+
+        GameManager.Instance.CurrentBattlePlayers = stayingPlayers;
+
+        for (int i = 0; i < stayingPlayers.Count; i++)
+        {
+            newObj = (GameObject)Instantiate(prefab, transform);
+            var charManager = newObj.GetComponent<CharDataClass>();
+            charManager.Init(stayingPlayers[i], checkName(stayingPlayers[i][0]));
+            charlistPrefabs.Add(newObj);
+        }
+    }
+
+    public void BattleScenePopulate()
+    {
+        GameObject newObj; // Create GameObject instance
+
+        for (int i = 0; i < GameManager.Instance.CurrentBattlePlayers.Count; i++)
+        {
+            newObj = (GameObject)Instantiate(prefab, transform);
+            var charManager = newObj.GetComponent<CharDataClass>();
+            charManager.Init(GameManager.Instance.CurrentBattlePlayers[i], checkName(GameManager.Instance.CurrentBattlePlayers[i][0]));
+            charlistPrefabs.Add(newObj);
+        }
+    }
+
+
+    public void deleteAllCharlist()
 	{
 		for (int i = 0; i < charlistPrefabs.Count; i++)
 		{
@@ -58,7 +89,6 @@ public class ScrollContentSet : MonoBehaviour {
 			using (StreamReader sr = new StreamReader(fs, Encoding.UTF8, false))
 			{
 				string strLineValue = null;
-				string[] keys = null;
 				string[] values = null;
 				int lineCount = 0;
 
@@ -67,15 +97,6 @@ public class ScrollContentSet : MonoBehaviour {
 					//Debug.Log (string.Format("values: {0}", strLineValue));
 					// Must not be empty.
 					if (string.IsNullOrEmpty(strLineValue)) return;
-
-					if (strLineValue.Substring(0, 1).Equals("#"))
-					{
-						keys = strLineValue.Split(',');
-
-						keys[0] = keys[0].Replace("#", "");
-
-						continue;
-					}
 
 					values = strLineValue.Split(',');
 
@@ -87,7 +108,19 @@ public class ScrollContentSet : MonoBehaviour {
 		}
 	}
 
-	void nameDataSetting()
+    void AllPlayerDataSetting()
+    {
+        for(int i = 0; i < GameManager.Instance.MapRegionData.Count; i++)
+        {
+            if(GameManager.Instance.MapRegionData[i] == "0")
+            {
+                PlayerDataSetting(GameManager.Instance.GetCurrentMapName(i));
+            }
+        }
+    }
+
+
+    void nameDataSetting()
 	{
 		string strFile= "name.txt";
 
@@ -96,7 +129,6 @@ public class ScrollContentSet : MonoBehaviour {
 			using (StreamReader sr = new StreamReader(fs, Encoding.UTF8, false))
 			{
 				string strLineValue = null;
-				string[] keys = null;
 				string[] values = null;
 
 				while ((strLineValue = sr.ReadLine()) != null)
@@ -104,15 +136,6 @@ public class ScrollContentSet : MonoBehaviour {
 					//Debug.Log (string.Format("values: {0}", strLineValue));
 					// Must not be empty.
 					if (string.IsNullOrEmpty(strLineValue)) return;
-
-					if (strLineValue.Substring(0, 1).Equals("#"))
-					{
-						keys = strLineValue.Split(',');
-
-						keys[0] = keys[0].Replace("#", "");
-
-						continue;
-					}
 
 					values = strLineValue.Split(',');
 

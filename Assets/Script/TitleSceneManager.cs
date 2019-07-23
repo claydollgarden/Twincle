@@ -13,7 +13,7 @@ public class TitleSceneManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyUp("s")) {
-            SceneManager.LoadScene("MapScene");
+            SceneManager.LoadScene("IZONEScene");
         }
 	}
 }

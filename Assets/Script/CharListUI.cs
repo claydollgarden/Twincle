@@ -21,13 +21,14 @@ public class CharListUI : MonoBehaviour {
         GameManager.Instance.activeCharListFlg = true;
         gameObject.SetActive (true);
         scrollContentSetting.Populate (mapName);
-        iTween.MoveFrom(gameObject,iTween.Hash("x", 100,"time",0.3));
+        iTween.MoveFrom(gameObject,iTween.Hash("x", 2000,"time",0.3));
 
 	}
 
 	public void closeUI()
 	{
         GameManager.Instance.activeCharListFlg = false;
+        GameManager.Instance.leftSideUI.closeUI();
 		gameObject.SetActive (false);
 		scrollContentSetting.deleteAllCharlist ();
 	}

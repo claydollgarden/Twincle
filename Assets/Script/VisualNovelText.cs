@@ -15,8 +15,9 @@ public class VisualNovelText : MonoBehaviour {
 	//대사, 화면에뜰 사람수, 포커스중인 사람, 왼쪽사람번호, 왼쪽사람 스프라이트 번호, 오른쪽사람번호, 오른쪽사람 스프라이트 번호, 화면효과
 	public List<string[]> scenarioText = new List<string[]>();
 
-	public TMP_Text m_textMeshPro;
-	public Text nameText;
+	//public TMP_Text m_textMeshPro;
+    public Text novelText;
+    public Text nameText;
 
 	public int scriptLine = 0;
 
@@ -27,9 +28,9 @@ public class VisualNovelText : MonoBehaviour {
 		ScenarioDataSetting ();
 
 		// Get Reference to TextMeshPro Component
-		m_textMeshPro = GetComponent<TMP_Text>();
-		m_textMeshPro.text = " ";
-		m_textMeshPro.enableWordWrapping = true;
+		//m_textMeshPro = GetComponent<TMP_Text>();
+		//m_textMeshPro.text = " ";
+		//m_textMeshPro.enableWordWrapping = true;
 
 		nameText.text = " ";
 
@@ -50,11 +51,12 @@ public class VisualNovelText : MonoBehaviour {
 
 	void Start()
 	{
-		m_textMeshPro.text = scenarioText[scriptLine][0];
-		standingCgManager.changeFocus (scenarioText [scriptLine] [2]);
+        //m_textMeshPro.text = scenarioText[scriptLine][0];
+        novelText.text = scenarioText[scriptLine][0];
+        standingCgManager.changeFocus (scenarioText [scriptLine] [2]);
 		SetNameText ();
 
-		StartCoroutine("StartText");
+		//StartCoroutine("StartText");
 	}
 
 	void Update()
@@ -65,37 +67,45 @@ public class VisualNovelText : MonoBehaviour {
 			SetCharSprites ();
 			SetNameText ();
 
-			m_textMeshPro.text = scenarioText[scriptLine][0];
-			StartCoroutine("StartText");
+			//m_textMeshPro.text = scenarioText[scriptLine][0];
+
+            SetNovelText();
+			//StartCoroutine("StartText");
 		}
 	}
 
-	IEnumerator StartText()
-	{
+	//IEnumerator StartText()
+	//{
 
-		// Force and update of the mesh to get valid information.
-		m_textMeshPro.ForceMeshUpdate();
+	//	// Force and update of the mesh to get valid information.
+	//	m_textMeshPro.ForceMeshUpdate();
 
 
-		int totalVisibleCharacters = m_textMeshPro.textInfo.characterCount; // Get # of Visible Character in text object
-		int counter = 0;
-		int visibleCount = 0;
+	//	int totalVisibleCharacters = m_textMeshPro.textInfo.characterCount; // Get # of Visible Character in text object
+	//	int counter = 0;
+	//	int visibleCount = 0;
 
-		while (counter <= totalVisibleCharacters)
-		{
-			visibleCount = counter % (totalVisibleCharacters + 1);
+	//	while (counter <= totalVisibleCharacters)
+	//	{
+	//		visibleCount = counter % (totalVisibleCharacters + 1);
 
-			m_textMeshPro.maxVisibleCharacters = visibleCount; // How many characters should TextMeshPro display?
+	//		m_textMeshPro.maxVisibleCharacters = visibleCount; // How many characters should TextMeshPro display?
 
-			counter += 1;
+	//		counter += 1;
 
-			yield return new WaitForSeconds(0.01f);
-		}
+	//		yield return new WaitForSeconds(0.01f);
+	//	}
 
-		//Debug.Log("Done revealing the text.");
-	}
+	//	//Debug.Log("Done revealing the text.");
+	//}
 
-	void SetCharSprites()
+    void SetNovelText()
+    {
+        novelText.text = scenarioText[scriptLine][0];
+    }
+
+
+    void SetCharSprites()
 	{
 		if (scenarioText [scriptLine] [2] != scenarioText [scriptLine - 1] [2]) 
 		{

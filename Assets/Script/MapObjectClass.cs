@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapObjectClass : MonoBehaviour {
 	public string mapName;
@@ -22,23 +23,37 @@ public class MapObjectClass : MonoBehaviour {
 
 	void OnMouseUp()
 	{
+        //Debug.Log("clicked :");
+        //if (GameManager.Instance.activeCharListFlg == false)
+        //{
+        //    GameManager.Instance.charListUI.setUI (mapName);
+        //}
+	}
+
+    public void ClickedSetUI()
+    {
         Debug.Log("clicked :");
         if (GameManager.Instance.activeCharListFlg == false)
         {
-            GameManager.Instance.charListUI.setUI (mapName);
+            GameManager.Instance.charListUI.setUI(mapName);
+            GameManager.Instance.leftSideUI.setUI(playerTeam);
+
+            if(playerTeam == "1")
+            {
+                GameManager.Instance.enemyMapName = mapName;
+            }
         }
-	}
+    }
 
     public void setRegionColor()
     {
         if (playerTeam == "0")
         {
-            
-            GetComponent<SpriteRenderer>().color = new Color32(145, 39, 143, 200);
+            this.GetComponent<Image>().color = new Color(0.0f, 0.0f, 1.0f, 0.5f);
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+            this.GetComponent<Image>().color = new Color(1.0f, 0.0f, 0.0f, 0.5f);
         }
     }
 }
